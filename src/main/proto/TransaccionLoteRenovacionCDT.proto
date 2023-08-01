@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+//Configs
+
+option java_multiple_files = true;
+option java_package = "com.mibanco.transaccionloterenovacioncdt.us";
+option java_outer_classname = "TransaccionLoteRenovacionCDT";
+
+package TransaccionLoteRenovacionCDT;
+
+message RenovacionCDTType {
+  int32 numCertificadoCancelar= 1;
+  int32 numeroCliente= 2;
+  NumeroProductoCDTEnum numeroProductoCDT= 3;
+  TipoRenovacionEnum tipoRenovacion= 4;
+  int32 plazoDias= 5;
+  string plazo= 6;
+  int32 fechaVencimientoDia= 7;
+  int32 fechaVencimientoMes= 8;
+  int32 fechaVencimientoAno= 9;
+  string codigoBanco= 10;
+  int32 codigoSucursal= 11;
+  string condicionManejo= 12;
+  string compensacion= 13;
+  string tipoProrroga= 14;
+  string cuentaDePago= 15;
+  int32 numeroCuentaContable= 16;
+  int32 concepto= 17;
+  string cuentaConcepto= 18;
+  string monedaPago= 19;
+  int32 montoCapital= 20;
+  string tipoPersona= 21;
+  string numeroDocumento= 22;
+  string nombreCliente= 23;
+  TipoTransaccionEnum tipoTransaccion= 24;
+  CodigoBancoEnum codigoBancoDestino= 25;
+  int32 numeroCuentaBancaria= 26;
+  string referencia= 27;
+  TransaccionLoteRenovacionCDT_Type transaccionRenovacion= 28;
+}
+
+message GuardarRenovacionesCDTInput{
+  string cantidadCDTs = 1;
+  RenovacionCDTType lista = 2;
+}
+
+message TransaccionLoteRenovacionCDT_Type{
+  int32 numCertificadoCancelar = 1;
+  int32 numCertificadoNuevo = 2;
+  int32 numeroCliente = 3;
+  string codigoLote = 4;
+  EstadoRenovacionEnum estadoRenovacion = 5;
+  TipoProcesoEnum tipoProceso = 6;
+}
+
+
+enum CodigoBancoEnum{
+  _1001 = 0;
+  _1002 = 1;
+  _1006 = 2;
+  _1007 = 3;
+  _1009 = 4;
+  _1012 = 5;
+  _1013 = 6;
+  _1014 = 7;
+  _1019 = 8;
+  _1023 = 9;
+  _1031 = 10;
+  _1032 = 11;
+  _1040 = 12;
+  _1047 = 13;
+  _1051 = 14;
+  _1052 = 15;
+  _1053 = 16;
+  _1059 = 17;
+  _1060 = 18;
+  _1061 = 19;
+  _1062 = 20;
+  _1063 = 21;
+  _1065 = 22;
+  _1066 = 23;
+  _1067 = 24;
+  _1069 = 25;
+  _1071 = 26;
+  _1086 = 27;
+  _1121 = 28;
+  _1151 = 29;
+  _1283 = 30;
+  _1289 = 31;
+  _1291 = 32;
+  _1292 = 33;
+  _1303 = 34;
+  _1370 = 35;
+  _1507 = 36;
+  _1551 = 37;
+  _1558 = 38;
+  _1637 = 39;
+}
+
+enum NumeroProductoCDTEnum{
+    D180 = 0;
+    D360 = 1;
+    D540 = 2;
+    D541 = 3;
+}
+
+enum TipoRenovacionEnum{
+    _1 = 0;
+    _2 = 1;
+    _4 = 2;
+}
+
+enum TipoTransaccionEnum{
+    _37 = 0;
+    _27 = 1;
+}
+
+enum TipoProcesoEnum{
+    CANCELACIoN = 0;
+    RENOVACIoN = 1;
+}
+
+enum EstadoRenovacionEnum{
+    POR_PROCESAR = 0;
+    ERROR_DATOS = 1;
+    EXITOSO = 2;
+    NO_EXITOSO = 3;
+}
+
+message ResponseGuardarRenovacionesCDT{
+  RenovacionCDTType rpt = 1;
+}
+
+message ResponseListGuardarRenovacionesCDT{
+    repeated RenovacionCDTType rpt = 1;
+}
+
+message ConsultarRenovacionesPorLoteYEstadoInput{
+  string codigoLote = 1;
+  EstadoRenovacionEnum estadoRenovacion = 2;
+}
+
+
+
+service TransaccionLoteRenovacionGrpc{
+  rpc guardarRenovacionesCDT(GuardarRenovacionesCDTInput) returns (ResponseGuardarRenovacionesCDT);
+  rpc consultarRenovacionesPorLoteYEstado(ConsultarRenovacionesPorLoteYEstadoInput) returns ( stream ResponseListGuardarRenovacionesCDT);
+}

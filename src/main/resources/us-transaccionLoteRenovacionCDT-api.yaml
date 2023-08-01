@@ -1,0 +1,254 @@
+openapi: 3.0.1
+info:
+  description: API REST US Transaccion Lote Renovación CDT
+  version: 0.0.1
+  title: API REST US Transaccion Lote Renovación CDT
+  contact:
+    name: MiBanco
+    url: https://www.mibanco.com.co/
+    email: api@mibanco.com.co
+  license:
+    name: GNU GPLv3
+    url: 'https://www.gnu.org/licenses/gpl-3.0.html'
+tags:
+  - name: Transaccion Lote Renovación CDT
+    description: Transaccion Lote Renovación CDT
+#----------------------------
+#Endpoints del Entidad
+#----------------------------
+paths:
+  /v1/us/renovacionCDT/{codigoLote}/{estado}:
+    get:
+      tags:
+        - consultar renovaciones por lote y estado
+      operationId: consultarRenovacionesPorLoteYEstado
+      parameters:
+        - in: path
+          name: codigoLote
+          description: Código de lote
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: estado
+          description: Estado de renovación
+          required: true
+          schema:
+            $ref: "#/components/schemas/EstadoRenovacionEnum"
+      responses:
+        "200":
+          description: Cliente CDT digital creado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConsultarRenovacionesPorLoteYEstadoOutput"
+        "400":
+          description: Parámetros de entrada no válidos.
+        "404":
+          description: No se encuentra el cliente.
+  /v1/us/renovacionCDT/:
+    post:
+      tags:
+        - guardar renovaciones CDT
+      operationId: guardarRenovacionesCDT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GuardarRenovacionesCDT"
+      responses:
+        "200":
+          description: Renovaciones CDT creadas.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RenovacionCDT_Type"
+        "400":
+          description: Parámetros de entrada no válidos.
+        "404":
+          description: No se pudo crear el CDT.
+#---------------------------------------------
+#Se declaran los Modelos/Schemas del servicio
+#---------------------------------------------
+components:
+  schemas:
+    ConsultarRenovacionesPorLoteYEstadoOutput:
+      type: object
+      properties:
+        lista:
+          type: object
+          items:
+            $ref: "#/components/schemas/RenovacionCDT_Type"
+    LoteRenovacionCDT_Type:
+      type: object
+      properties:
+        codigoLote:
+          type: string
+        fechaCreacion:
+          type: string
+          format: date-time
+        cantidadCDTs:
+          type: integer
+        cdtsRenovacionNoExitoso:
+          type: integer
+        cdtsRenovados:
+          type: integer
+        totalCDTsProcesados:
+          type: integer
+    TransaccionLoteRenovacionCDT_Type:
+      type: object
+      properties:
+        numCertificadoCancelar:
+          type: integer
+        numCertificadoNuevo:
+          type: integer
+        numeroCliente:
+          type: integer
+        codigoLote:
+          type: string
+        estadoRenovacion:
+          $ref: "#/components/schemas/EstadoRenovacionEnum"
+        tipoProceso:
+          $ref: "#/components/schemas/TipoProcesoEnum"
+    GuardarRenovacionesCDT:
+      type: object
+      properties:
+        lista:
+          type: array
+          items:
+            $ref: "#/components/schemas/RenovacionCDT_Type"
+        cantidadCDTs:
+            type: integer
+    RenovacionCDT_Type:
+      type: object
+      properties:
+        numCertificadoCancelar:
+          type: integer
+        numeroCliente:
+          type: integer
+        numeroProductoCDT:
+          $ref: "#/components/schemas/NumeroProductoCDTEnum"
+        tipoRenovacion:
+          $ref: "#/components/schemas/TipoRenovacionEnum"
+        plazoDias:
+          type: integer
+        plazo:
+          type: string
+        fechaVencimientoDia:
+          type: integer
+        fechaVencimientoMes:
+          type: integer
+        fechaVencimientoAno:
+          type: integer
+        codigoBanco:
+          type: string
+        codigoSucursal:
+          type: integer
+        condicionManejo:
+          type: string
+        compensacion:
+          type: string
+        tipoProrroga:
+          type: string
+        cuentaDePago:
+          type: string
+        numeroCuentaContable:
+          type: integer
+        concepto:
+          type: integer
+        cuentaConcepto:
+          type: string
+        monedaPago:
+          type: string
+        montoCapital:
+          type: integer
+        tipoPersona:
+          type: string
+        numeroDocumento:
+          type: string
+        nombreCliente:
+          type: string
+        tipoTransaccion:
+          $ref: "#/components/schemas/TipoTransaccionEnum"
+        codigoBancoDestino:
+          $ref: "#/components/schemas/CodigoBancoEnum"
+        numeroCuentaBancaria:
+          type: integer
+        referencia:
+          type: string
+        transaccionRenovacion:
+          $ref: "#/components/schemas/TransaccionLoteRenovacionCDT_Type"
+    EstadoRenovacionEnum:
+      type: string
+      enum:
+        - POR PROCESAR
+        - ERROR DATOS
+        - EXITOSO
+        - NO EXITOSO
+    CodigoBancoEnum:
+      type: string
+      enum:
+        - 1001
+        - 1002
+        - 1006
+        - 1007
+        - 1009
+        - 1012
+        - 1013
+        - 1014
+        - 1019
+        - 1023
+        - 1031
+        - 1032
+        - 1040
+        - 1047
+        - 1051
+        - 1052
+        - 1053
+        - 1059
+        - 1060
+        - 1061
+        - 1062
+        - 1063
+        - 1065
+        - 1066
+        - 1067
+        - 1069
+        - 1071
+        - 1086
+        - 1121
+        - 1151
+        - 1283
+        - 1289
+        - 1291
+        - 1292
+        - 1303
+        - 1370
+        - 1507
+        - 1551
+        - 1558
+        - 1637
+    TipoRenovacionEnum:
+      type: string
+      enum:
+        - 1
+        - 2
+        - 4
+    NumeroProductoCDTEnum:
+      type: string
+      enum:
+        - D180
+        - D360
+        - D540
+        - D541
+    TipoTransaccionEnum:
+      type: string
+      enum:
+        - 37
+        - 27
+    TipoProcesoEnum:
+      type: string
+      enum:
+        - "CANCELACION"
+        - "RENOVACION"

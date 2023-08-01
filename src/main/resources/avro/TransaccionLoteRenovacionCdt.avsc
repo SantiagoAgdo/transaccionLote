@@ -1,0 +1,247 @@
+{
+  "type": "record",
+  "name": "GuardarRenovacionesCdtAvro",
+  "namespace": "avro",
+  "fields": [
+    {
+      "name": "codigoLote",
+      "type": "string"
+    },
+    {
+      "name": "cdt",
+      "type": {
+        "type": "record",
+        "name": "RenovacionCdtAvro",
+        "namespace": "avro",
+        "fields": [
+          {
+            "name": "numCertificadoCancelar",
+            "type": "int"
+          },
+          {
+            "name": "numeroCliente",
+            "type": "int"
+          },
+          {
+            "name": "numeroProductoCDT",
+            "type": {
+              "type": "enum",
+              "name": "NumeroProductoCDTEnum",
+              "symbols": [
+                "D180",
+                "D360",
+                "D540",
+                "D541"
+              ]
+            }
+          },
+          {
+            "name": "tipoRenovacion",
+            "type": {
+              "type": "enum",
+              "name": "TipoRenovacionEnum",
+              "symbols": [
+                "_1",
+                "_2",
+                "_4"
+              ]
+            }
+          },
+          {
+            "name": "plazoDias",
+            "type": "int"
+          },
+          {
+            "name": "plazo",
+            "type": "string"
+          },
+          {
+            "name": "fechaVencimientoDia",
+            "type": "int"
+          },
+          {
+            "name": "fechaVencimientoMes",
+            "type": "int"
+          },
+          {
+            "name": "fechaVencimientoAno",
+            "type": "int"
+          },
+          {
+            "name": "codigoBanco",
+            "type": "string"
+          },
+          {
+            "name": "codigoSucursal",
+            "type": "int"
+          },
+          {
+            "name": "condicionManejo",
+            "type": "string"
+          },
+          {
+            "name": "compensacion",
+            "type": "string"
+          },
+          {
+            "name": "tipoProrroga",
+            "type": "string"
+          },
+          {
+            "name": "cuentaDePago",
+            "type": "string"
+          },
+          {
+            "name": "numeroCuentaContable",
+            "type": "int"
+          },
+          {
+            "name": "concepto",
+            "type": "int"
+          },
+          {
+            "name": "cuentaConcepto",
+            "type": "string"
+          },
+          {
+            "name": "monedaPago",
+            "type": "string"
+          },
+          {
+            "name": "montoCapital",
+            "type": "int"
+          },
+          {
+            "name": "tipoPersona",
+            "type": "string"
+          },
+          {
+            "name": "numeroDocumento",
+            "type": "string"
+          },
+          {
+            "name": "nombreCliente",
+            "type": "string"
+          },
+          {
+            "name": "tipoTransaccion",
+            "type": {
+              "type": "enum",
+              "name": "TipoTransaccionEnum",
+              "symbols": [
+                "_37",
+                "_27"
+              ]
+            }
+          },
+          {
+            "name": "codigoBancoDestino",
+            "type": {
+              "type": "enum",
+              "name": "CodigoBancoEnum",
+              "symbols": [
+                "_1001",
+                "_1002",
+                "_1006",
+                "_1007",
+                "_1009",
+                "_1012",
+                "_1013",
+                "_1014",
+                "_1019",
+                "_1023",
+                "_1031",
+                "_1032",
+                "_1040",
+                "_1047",
+                "_1051",
+                "_1052",
+                "_1053",
+                "_1059",
+                "_1060",
+                "_1061",
+                "_1062",
+                "_1063",
+                "_1065",
+                "_1066",
+                "_1067",
+                "_1069",
+                "_1071",
+                "_1086",
+                "_1121",
+                "_1151",
+                "_1283",
+                "_1289",
+                "_1291",
+                "_1292",
+                "_1303",
+                "_1370",
+                "_1507",
+                "_1551",
+                "_1558",
+                "_1637"
+              ]
+            }
+          },
+          {
+            "name": "numeroCuentaBancaria",
+            "type": "int"
+          },
+          {
+            "name": "referencia",
+            "type": "string"
+          },
+          {
+            "name": "transaccionRenovacion",
+            "type": {
+              "type": "record",
+              "name": "TransaccionLoteRenovacionCdtArvo",
+              "fields": [
+                {
+                  "name": "numCertificadoCancelar",
+                  "type": "int"
+                },
+                {
+                  "name": "numCertificadoNuevo",
+                  "type": "int"
+                },
+                {
+                  "name": "numeroCliente",
+                  "type": "int"
+                },
+                {
+                  "name": "codigoLote",
+                  "type": "string"
+                },
+                {
+                  "name": "estadoRenovacion",
+                  "type": {
+                    "type": "enum",
+                    "name": "EstadoRenovacionEnum",
+                    "symbols": [
+                      "POR_PROCESAR",
+                      "ERROR_DATOS",
+                      "EXITOSO",
+                      "NO_EXITOSO"
+                    ]
+                  }
+                },
+                {
+                  "name": "tipoProceso",
+                  "type": {
+                    "type": "enum",
+                    "name": "TipoProcesoEnum",
+                    "symbols": [
+                      "CANCELACION",
+                      "RENOVACION"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
