@@ -10,7 +10,7 @@ import java.util.List;
 public interface TransaccionLoteRenovacionCdtService {
 
 
-    List<RenovacionCDTType> consultarRenovacionesPorLoteYEstado(String codigoLote, EstadoRenovacionEnum estado);
+    List<RenovacionCDTType> consultarRenovacionesPorLoteYEstado(String codigoLote, String estado);
 
 
     RenovacionCDTEntity guardarRenovacionesCDT(GuardarRenovacionesCDTEntity guardarRenovacionesCDT);

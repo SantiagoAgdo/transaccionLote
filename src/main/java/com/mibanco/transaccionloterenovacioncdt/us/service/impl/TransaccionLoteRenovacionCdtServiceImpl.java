@@ -33,7 +33,7 @@ public class TransaccionLoteRenovacionCdtServiceImpl implements TransaccionLoteR
 
 
     @Override
-    public List<RenovacionCDTType> consultarRenovacionesPorLoteYEstado(String codigoLote, EstadoRenovacionEnum estado) {
+    public List<RenovacionCDTType> consultarRenovacionesPorLoteYEstado(String codigoLote, String estado) {
         // Implementa la lógica para consultar las renovaciones por lote y estado
         LOG.info("Consultando renovaciones por lote {} y estado {}", codigoLote, estado);
 //

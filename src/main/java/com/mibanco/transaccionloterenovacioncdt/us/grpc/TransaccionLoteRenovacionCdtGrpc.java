@@ -64,15 +64,25 @@ public class TransaccionLoteRenovacionCdtGrpc extends TransaccionLoteRenovacionG
         try {
 
 //            validator
-            List<RenovacionCDTType> consultaList = transaccionLoteRenovacionCdtService.consultarRenovacionesPorLoteYEstado(request.getCodigoLote(), request.getEstadoRenovacion());
+            List<RenovacionCDTType> consultaList = transaccionLoteRenovacionCdtService.consultarRenovacionesPorLoteYEstado(request.getCodigoLote(), request.getEstadoRenovacion().toString());
 
             List<com.mibanco.transaccionloterenovacioncdt.us.RenovacionCDTType> renovacionListResponse = new ArrayList<>();
             for (RenovacionCDTType renovacion : consultaList) {
+                TransaccionLoteRenovacionCDT_Type transaccionLoteRenovacionCDTType = TransaccionLoteRenovacionCDT_Type.newBuilder()
+                        .setCodigoLote(renovacion.getTransaccionRenovacion().getCodigoLote())
+                        .setNumCertificadoNuevo(renovacion.getTransaccionRenovacion().getNumCertificadoNuevo())
+                        .setNumCertificadoCancelar(renovacion.getTransaccionRenovacion().getNumCertificadoCancelar())
+                        .setNumeroCliente(renovacion.getTransaccionRenovacion().getNumeroCliente())
+                        .setCodigoLote(renovacion.getTransaccionRenovacion().getCodigoLote())
+                        .setEstadoRenovacion(renovacion.getTransaccionRenovacion().getEstadoRenovacion().toString())
+                        .setTipoProceso(renovacion.getTransaccionRenovacion().getTipoProceso().toString())
+                        .build();
+
                 renovacionListResponse.add(com.mibanco.transaccionloterenovacioncdt.us.RenovacionCDTType.newBuilder()
                         .setNumCertificadoCancelar(renovacion.getNumCertificadoCancelar())
                         .setNumeroCliente(renovacion.getNumeroCliente())
-//                        .setNumeroProductoCDT(renovacion.getNumeroProductoCDT())
-//                        .setTipoRenovacion(renovacion.getTipoRenovacion())
+                        .setNumeroProductoCDT(renovacion.getNumeroProductoCDT().toString())
+                        .setTipoRenovacion(renovacion.getTipoRenovacion().toString())
                         .setPlazoDias(renovacion.getPlazoDias())
                         .setPlazo(renovacion.getPlazo())
                         .setFechaVencimientoDia(renovacion.getFechaVencimientoDia())
@@ -92,11 +102,11 @@ public class TransaccionLoteRenovacionCdtGrpc extends TransaccionLoteRenovacionG
                         .setTipoPersona(renovacion.getTipoPersona())
                         .setNumeroDocumento(renovacion.getNumeroDocumento())
                         .setNombreCliente(renovacion.getNombreCliente())
-//                        .setTipoTransaccion(renovacion.getTipoTransaccion())
-//                        .setCodigoBancoDestino(renovacion.getCodigoBancoDestino())
+                        .setTipoTransaccion(renovacion.getTipoTransaccion().toString())
+                        .setCodigoBancoDestino(renovacion.getCodigoBancoDestino().toString())
                         .setNumeroCuentaBancaria(renovacion.getNumeroCuentaBancaria())
                         .setReferencia(renovacion.getReferencia())
-//                        .setTransaccionRenovacion(renovacion.getTransaccionRenovacion())
+                        .setTransaccionRenovacion(transaccionLoteRenovacionCDTType)
                         .build());
             }
             ResponseListGuardarRenovacionesCDT response = ResponseListGuardarRenovacionesCDT.newBuilder().addAllRpt(renovacionListResponse).build();

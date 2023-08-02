@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("RenovacionCDT_Type")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-08-01T16:58:05.662005-05:00[America/Bogota]")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2023-08-02T17:14:45.036248-05:00[America/Bogota]")
 public class RenovacionCDTType   {
   private @Valid Integer numCertificadoCancelar;
   private @Valid Integer numeroCliente;
