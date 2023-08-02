@@ -54,77 +54,77 @@ message TransaccionLoteRenovacionCDT_Type{
 }
 
 
-enum CodigoBancoEnum{
-  _1001 = 0;
-  _1002 = 1;
-  _1006 = 2;
-  _1007 = 3;
-  _1009 = 4;
-  _1012 = 5;
-  _1013 = 6;
-  _1014 = 7;
-  _1019 = 8;
-  _1023 = 9;
-  _1031 = 10;
-  _1032 = 11;
-  _1040 = 12;
-  _1047 = 13;
-  _1051 = 14;
-  _1052 = 15;
-  _1053 = 16;
-  _1059 = 17;
-  _1060 = 18;
-  _1061 = 19;
-  _1062 = 20;
-  _1063 = 21;
-  _1065 = 22;
-  _1066 = 23;
-  _1067 = 24;
-  _1069 = 25;
-  _1071 = 26;
-  _1086 = 27;
-  _1121 = 28;
-  _1151 = 29;
-  _1283 = 30;
-  _1289 = 31;
-  _1291 = 32;
-  _1292 = 33;
-  _1303 = 34;
-  _1370 = 35;
-  _1507 = 36;
-  _1551 = 37;
-  _1558 = 38;
-  _1637 = 39;
+message CodigoBancoEnum{
+  string _1001 = 1;
+  string _1002 = 2;
+  string _1006 = 3;
+  string _1007 = 4;
+  string _1009 = 5;
+  string _1012 = 6;
+  string _1013 = 7;
+  string _1014 = 8;
+  string _1019 = 9;
+  string _1023 = 10;
+  string _1031 = 11;
+  string _1032 = 12;
+  string _1040 = 13;
+  string _1047 = 14;
+  string _1051 = 15;
+  string _1052 = 16;
+  string _1053 = 17;
+  string _1059 = 18;
+  string _1060 = 19;
+  string _1061 = 20;
+  string _1062 = 21;
+  string _1063 = 22;
+  string _1065 = 23;
+  string _1066 = 24;
+  string _1067 = 25;
+  string _1069 = 26;
+  string _1071 = 27;
+  string _1086 = 28;
+  string _1121 = 29;
+  string _1151 = 30;
+  string _1283 = 31;
+  string _1289 = 32;
+  string _1291 = 33;
+  string _1292 = 34;
+  string _1303 = 35;
+  string _1370 = 36;
+  string _1507 = 37;
+  string _1551 = 38;
+  string _1558 = 39;
+  string _1637 = 40;
 }
 
-enum NumeroProductoCDTEnum{
-    D180 = 0;
-    D360 = 1;
-    D540 = 2;
-    D541 = 3;
+message NumeroProductoCDTEnum{
+  string D180 = 1;
+  string D360 = 2;
+  string D540 = 3;
+  string D541 = 4;
 }
 
-enum TipoRenovacionEnum{
-    _1 = 0;
-    _2 = 1;
-    _4 = 2;
+message TipoRenovacionEnum{
+  string _1 = 1;
+  string _2 = 2;
+  string _4 = 3;
 }
 
-enum TipoTransaccionEnum{
-    _37 = 0;
-    _27 = 1;
+message TipoTransaccionEnum{
+  string _37 = 1;
+  string _27 = 2;
 }
 
-enum TipoProcesoEnum{
-    CANCELACIoN = 0;
-    RENOVACIoN = 1;
+message TipoProcesoEnum{
+  string CANCELACION = 1;
+  string RENOVACI0N = 2;
 }
 
-enum EstadoRenovacionEnum{
-    POR_PROCESAR = 0;
-    ERROR_DATOS = 1;
-    EXITOSO = 2;
-    NO_EXITOSO = 3;
+message EstadoRenovacionEnum{
+  string ERROR_DATOS = 1;
+  string EXITOSO = 2;
+  string NO_EXITOSO = 3;
+  string POR_PROCESAR = 4;
 }
 
 message ResponseGuardarRenovacionesCDT{
@@ -132,7 +132,7 @@ message ResponseGuardarRenovacionesCDT{
 }
 
 message ResponseListGuardarRenovacionesCDT{
-    repeated RenovacionCDTType rpt = 1;
+  repeated RenovacionCDTType rpt = 1;
 }
 
 message ConsultarRenovacionesPorLoteYEstadoInput{
